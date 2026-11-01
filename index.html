@@ -209,7 +209,6 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
       <div class="wa-tbox">
         <table class="wa-t x-ctl-table" data-source="control" data-row-key="id">
           <thead><tr>
-            <th data-field="id" class="wa-hide-sm">Ref</th>
             <th data-field="squad">Squad</th>
             <th data-field="player">Player</th>
             <th data-field="type" class="x-ctl-type">Type</th>
@@ -629,7 +628,7 @@ dash.onData(()=>{
           const n=scope.length,cJ=scope.filter(r=>r.jotform==='Done').length,cM=scope.filter(r=>r.medical==='Received').length,cT=scope.filter(r=>ok(r.teamapp)).length,cC=scope.filter(r=>r.status==='Complete').length;
           kpis(kp,[['Fully complete',pct(cC,n),`${cC} of ${n}`],['Jotform',pct(cJ,n),`${cJ} of ${n}`],['Medical clearance',pct(cM,n),`${cM} of ${n}`],['TeamApp',pct(cT,n),`${cT} of ${n}`],['Outstanding',String(n-cC),'players']]);
           scope.filter(r=>CF[id]==='all'||r.status===CF[id]).forEach(r=>{const tr=document.createElement('tr');tr.dataset.key=r.id;
-            cell(tr,r.id,'wa-hide-sm');cell(tr,r.squad==='U23'?'U23 NPL':r.squad,'');cell(tr,r.player,TCLS[r.type]||'');
+            cell(tr,r.squad==='U23'?'U23 NPL':r.squad,'');cell(tr,r.player,TCLS[r.type]||'');
             if(id==='boys')cell(tr,r.type||'',TCLS[r.type]||'');
             cell(tr,r.jotform,ok(r.jotform)?'s-done':'s-pend');cell(tr,r.medical,ok(r.medical)?'s-done':'s-pend');cell(tr,r.teamapp,ok(r.teamapp)?'s-done':'s-pend');cell(tr,r.status,r.status==='Complete'?'s-done':'s-pend');
             if(r.status!=='Complete')tr.style.fontWeight='600';
